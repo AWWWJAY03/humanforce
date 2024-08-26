@@ -23,7 +23,6 @@ class BasePage:
 
     def get_text(self, element):
         element = self.wait.until(ec.visibility_of_element_located(element))
-        text = element.text
         return element.text
 
     def select_dropdown(self, element, options: str):
@@ -32,6 +31,7 @@ class BasePage:
 
     def click_link_by_visible_text(self, link_text: str):
         element = (By.XPATH, f"//*[.='{link_text}']/a")
+        self.wait_until_visible(element, 60)
         self.scroll_into_view(element)
         self.click_element(element)
 
