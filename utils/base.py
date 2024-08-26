@@ -40,8 +40,7 @@ class BasePage:
         self.driver.execute_script("arguments[0].scrollIntoView(true);", locator)
 
     def is_element_visible(self, element):
-        element = self.wait.until(ec.visibility_of_element_located(element))
-        return element.is_displayed()
+        return not ec.invisibility_of_element(element)
 
     def wait_until_visible(self, element, timeout=30):
         WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located(element))
